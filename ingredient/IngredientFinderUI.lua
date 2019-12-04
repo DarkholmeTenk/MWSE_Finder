@@ -13,7 +13,10 @@ local ingredientFinderMenuXml = [[
             <PagingProvider id="paging" from="{currentIngredients}" to="currentPage">
                 <ThinBorder widthProportional="1" heightProportional="1">
                     <ForEach value="ingredient" from="{currentPage}" autoWidth="true" autoHeight="true" flowDirection="top_to_bottom">
-                        <Label text="${return d.ingredient.name}" />
+                        <Block flowDirection="left_to_right" autoWidth="true" autoHeight="true">
+                            <Image path="${return 'Icons\\' .. d.ingredient.icon}" width="32" height="32" />
+                            <Label text="${return d.ingredient.name}" />
+                        </Block>
                     </ForEach>
                 </ThinBorder>
                 <Block flowDirection="left_to_right" widthProportional="1" autoHeight="true">
