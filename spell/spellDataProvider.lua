@@ -1,14 +1,14 @@
+local Memoize = import("darkcraft.dev.util.Memoize")
+
 local spellDataProvider = {}
 
-spellDataProvider.getSpells = function()
-    if(spellDataProvider.spells == nil) then
-        spellDataProvider.spells = {}
-        for spell in tes3.iterateObjects(tes3.objectType.spell) do
-            table.insert(spellDataProvider.spells, spell) 
-        end
+spellDataProvider.getSpells = Memoize.noArgs(function()
+    local spells = {}
+    for spell in tes3.iterateObjects(tes3.objectType.spell) do
+        table.insert(spells, spell) 
     end
-    return spellDataProvider.spells
-end
+    return spells
+end)
 
 spellDataProvider.spellHasEffectInSchool = function(spell, schoolID)
     for _,effect in pairs(spell.effects) do
